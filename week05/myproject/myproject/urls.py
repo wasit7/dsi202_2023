@@ -20,5 +20,5 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('form-without-model/', views.contact_us_view,name='contact')
+    path('contact/', views.contact_us_view,name='contact')
 ]
