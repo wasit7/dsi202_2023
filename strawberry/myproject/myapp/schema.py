@@ -14,22 +14,28 @@ class AuthorType:
     id: auto
     name: auto
 
+@strawberry.django.input(models.Author)
+class AuthorInput:
+    id: auto
+    name: auto
+
+@strawberry.django.filters.filter(models.Book, lookups=True)
+class BookFilter:
+    id: auto
+    title: auto
+    author: 'AuthorFilter'
+
 @strawberry.django.type(models.Book)
 class BookType:
     id: auto
     title: auto
     author: AuthorType
 
-@strawberry.django.input(models.Author)
-class AuthorInput:
-    id: auto
-    name: auto
-
 @strawberry.django.input(models.Book)
 class BookInput:
     id: auto
     title: auto
-    author: AuthorInput
+    author: auto
 
 @strawberry.django.input(models.Author, partial=True)
 class AuthorPartialInput(AuthorInput):
@@ -70,14 +76,9 @@ class Mutation:
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
 
-#query
 # mutation MyMutation {
-#   updateAuthors(data: {name: "update_name"}, filters: {id: {exact: "31"}}) {
-#     id
-#     name
-#   }
-#   createAuthors(data: {name: "create_name"}) {
+#   createAuthors(data: [{name:"create_name1"},{name:"create_name2"}]) {
 #     name
 #     id
-#   }
+# 	}
 # }
