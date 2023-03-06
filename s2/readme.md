@@ -2,7 +2,7 @@
 TBA
 
 # curl
-note that nFile could be many files in folders, if the mutation could recieve multiple files
+note that nFile could be many files in a folder, if the mutation operation could recieve multiple files.
 
 ```bash
 curl --request POST \
