@@ -13,12 +13,14 @@ import strawberry_django.auth as auth
 class AuthorType:
     id: auto
     name: auto
-    # fruits: List[Fruit]
+    image: auto
+    # books: "List[Book]"
 
 @strawberry.django.input(Author, partial=True)
 class AuthorInput:
     id: auto
     name: auto
+    image: Upload
 
 @strawberry.django.type(Book)
 class BookType:
@@ -96,3 +98,9 @@ schema = strawberry.Schema(query=Query, mutation=Mutation)
 #     }
 #   }
 # }
+
+# curl --request POST \
+#   --url http://127.0.0.1:8000/myapp/graphql/ \
+#   --form 'operations={"query":"mutation MyMutation($file: Upload!) {\n  createAuthor(data: {name: \"my great author\", image: $file}) {\n    id\n  }\n}","variables": { "file": null } }' \
+#   --form 'map={ "nFile": ["variables.file"] }' \
+#   --form nFile=@author.png
