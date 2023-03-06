@@ -6,6 +6,8 @@ import strawberry_django
 from strawberry_django import mutations
 from strawberry_django.fields.types import DjangoFileType
 from strawberry.file_uploads import Upload
+from django.contrib.auth import get_user_model
+import strawberry_django.auth as auth
 
 @strawberry.django.type(Author)
 class AuthorType:
@@ -32,10 +34,16 @@ class BookInput:
     author: auto #AuthorInput
     cover: Upload # Optional[DjangoFileType] #= strawberry_django.field(resolver=resolve_picture)
 
+@strawberry.django.type(get_user_model())
+class User:
+    username: auto
+    email: auto
+
 @strawberry.type
 class Query:
     authors: List[AuthorType] = strawberry.django.field()
     books: List[BookType] = strawberry.django.field()
+    me: User = auth.current_user()
 
 
 @strawberry.type
