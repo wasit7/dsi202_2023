@@ -156,10 +156,56 @@ urlpatterns = [
 ]
 ```
 4. run server to check results
-gp to  http://127.0.0.1:8000/api/books/
+gp to  http://127.0.0.1:8000/book_app/api/books/
 5. add serializer, views and url for author
-check github https://github.com/wasit7/dsi202_2023
+check github https://github.com/wasit7/dsi202_2023/tree/main/Lesson06%20REST%20API
 
 # create html for front end
-1. HTML template
-2. Javascript
+1. HTML template /myproject/book_app/templates/book_list.html
+```html
+{% load static %}
+<!DOCTYPE html>
+<body>
+<form id="book-form">
+    <label for="author">Select an author:</label>
+    <select id="author" name="author">
+    {% for author in authors %}
+        <option value="{{ author.id }}">{{ author.name }}</option>
+    {% endfor %}
+    </select>
+    <!-- <button type="submit">Get Books</button> -->
+</form>
+
+<ul id="book-list"></ul>
+
+<script src="{% static 'js/main.js' %}"></script>
+```
+2. Javascript /myproject/book_app/static/js/main.js
+```js
+// Get a reference to the form and the book list
+const bookForm = document.querySelector('#book-form');
+const bookList = document.querySelector('#book-list');
+
+// Listen for the form submission event
+bookForm.addEventListener('change', (event) => {
+  event.preventDefault();
+
+  // Get the selected author ID from the form
+  const authorId = document.querySelector('#author').value;
+
+  // Send an AJAX request to the server to get the list of books by author
+  fetch(`/book_app/api/authors/${authorId}/`)
+    .then(response => response.json())
+    .then(author => {
+      // Clear the previous book list
+      bookList.innerHTML = '';
+
+      // Add each book to the book list
+      author.books.forEach(book => {
+        const li = document.createElement('li');
+        li.textContent = book.title;
+        bookList.appendChild(li);
+      });
+    });
+});
+```

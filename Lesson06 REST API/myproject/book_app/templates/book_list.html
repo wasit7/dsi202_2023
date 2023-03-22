@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Get Books by Author</title>
+  </head>
+  <body>
+    <form id="book-form">
+      <label for="author">Select an author:</label>
+      <select id="author" name="author">
+        {% for author in authors %}
+          <option value="{{ author.id }}">{{ author.name }}</option>
+        {% endfor %}
+      </select>
+      <!-- <button type="submit">Get Books</button> -->
+    </form>
+
+    <ul id="book-list"></ul>
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

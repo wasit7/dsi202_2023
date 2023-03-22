@@ -6,3 +6,4 @@ from rest_framework.decorators import api_view
 def get_data(request):
     data={'name':'David', 'age':22}
     return Response(data)
+

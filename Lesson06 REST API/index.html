@@ -1,0 +1,28 @@
+<form>
+    <label for="author-name">Author Name:</label>
+    <input type="text" id="author-name" name="author-name">
+    <button type="button" id="get-books">Get Books</button>
+</form>
+
+<ul id="book-list"></ul>
+
+<script>
+    const bookList = document.getElementById('book-list');
+    const getBooksButton = document.getElementById('get-books');
+    
+    getBooksButton.addEventListener('click', () => {
+      const authorName = document.getElementById('author-name').value;
+      const apiUrl = `http://127.0.0.1:8000/book_ap/api/books/?author__name=${authorName}`;
+      
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          bookList.innerHTML = '';
+          data.forEach(book => {
+            const li = document.createElement('li');
+            li.textContent = book.title;
+            bookList.appendChild(li);
+          });
+        });
+    });
+    </script>
