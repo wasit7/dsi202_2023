@@ -48,6 +48,9 @@ $python manage.py createsuperuser
 ```
 
 6. run server to check the admin page
+```bash
+python manage.py runserver
+```
 
 # create function based API
 1. create api app
