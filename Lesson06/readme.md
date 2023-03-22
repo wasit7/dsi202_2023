@@ -12,21 +12,6 @@ $cd myproject/
 $python manage.py startapp book_app
 ```
 
-add book_app to setting.py
-
-```python
-#settings.py
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'book_app',
-]
-```
-
 3. create models
 ```python
 #models.py
@@ -63,9 +48,6 @@ $python manage.py createsuperuser
 ```
 
 6. run server to check the admin page
-```bash
-python manage.py runserver
-```
 
 # create function based API
 1. create api app
