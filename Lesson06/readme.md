@@ -52,6 +52,8 @@ $python manage.py createsuperuser
 python manage.py runserver
 ```
 
+go to http://127.0.0.1:8000/admin/ 
+
 # create function based API
 1. create api app
 2. create get_author fucntion
