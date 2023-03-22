@@ -55,10 +55,65 @@ python manage.py runserver
 go to http://127.0.0.1:8000/admin/ 
 
 # create function based API
-1. create api app
+0. install django-rest-framework 
+```bash
+$pip install djangorestframework
+```
+1. create api app using this folder structure
+```bash
+./api
+├── __init__.py
+└── views.py
+```
+add app in settings
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'book_app',
+    'rest_framework',
+    'api',
+]
+```
 2. create get_author fucntion
-3. route url
+```python
+#views.py
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+
+@api_view(['GET'])
+def get_data(request):
+    data={'name':'David', 'age':22}
+    return Response(data)
+
+```
+3. route url in app and project
+```python
+#myproject/api/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.get_data),
+]
+```
+```python
+#myproject/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls'))
+]
+```
 4. run server to check results
+go to http://127.0.0.1:8000/api/
 
 # create class based API
 1. book serializer
