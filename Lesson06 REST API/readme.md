@@ -117,10 +117,48 @@ go to http://127.0.0.1:8000/api/
 
 # create class based API
 1. book serializer
+```python
+#/myproject/book_app/serializers.py
+from rest_framework import serializers
+from .models import Book
+
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'author', 'published_date']
+```
 2. book class based views
+```python
+#/myproject/book_app/views.py
+from rest_framework import generics
+from .models import Book
+from .serializers import BookSerializer
+
+class BookList(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BookDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+```
 3. route url
+```python
+#/mayproject/book_app/urls.py
+from django.urls import path
+from . import views
+from book_app.views import BookList, BookDetail
+
+urlpatterns = [
+    path('', views.get_data),
+    path('books/', BookList.as_view()),
+    path('book/<int:pk>/', BookDetail.as_view()),
+]
+```
 4. run server to check results
+gp to  http://127.0.0.1:8000/api/books/
 5. add serializer, views and url for author
+check github https://github.com/wasit7/dsi202_2023
 
 # create html for front end
 1. HTML template
