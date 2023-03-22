@@ -15,9 +15,39 @@ $python manage.py startapp book_app
 3. create models
 ```python
 #models.py
+from django.db import models
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    published_date = models.DateField()
+
+    def __str__(self):
+        return self.title
 ```
 4. register admin
-5. run server to check the admin page
+```python
+from django.contrib import admin
+from .models import Author, Book
+
+admin.site.register(Author)
+admin.site.register(Book)
+```
+5. migrations and create superuser
+```bash
+$python manage.py makemigrations
+$python manage.py migrate
+$python manage.py createsuperuser
+```
+
+6. run server to check the admin page
 
 # create function based API
 1. create api app
