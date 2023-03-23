@@ -12,6 +12,19 @@ $cd myproject/
 $python manage.py startapp book_app
 ```
 
+register app in settings.py
+```python
+#settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'book_app',
+```
+
 3. create models
 ```python
 #models.py
