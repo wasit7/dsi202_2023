@@ -222,3 +222,14 @@ bookForm.addEventListener('change', (event) => {
     });
 });
 ```
+
+3. add view
+```python
+#/myproject/book_app/views.py
+from django.shortcuts import render
+def book_list(request):
+    authors = Author.objects.all()
+    return render(request, 'book_list.html', {'authors': authors})
+
+4. server staticfiles by create static fold /myproject/book_app/static/
+
