@@ -1,0 +1,7 @@
+<!-- product_list.html -->
+<h1>Product List</h1>
+<ul>
+{% for product in object_list %}
+<li>{{ product.name }} - {{ product.price }}</li>
+{% endfor %}
+</ul>
