@@ -75,4 +75,4 @@ python manage.py runserver
 ```
 9. go to api page http://127.0.0.1:8000/api/
 
-![basic api page results](../../contents/basic_api_page.png)
+![basic api page results](../../contents/function_based_api.png)

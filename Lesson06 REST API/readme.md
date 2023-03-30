@@ -187,4 +187,6 @@ def book_list(request):
 16. server staticfiles 
 please see source code /myproject/book_app/static/
 
-17. check results at http://127.0.0.1:8000/book_app/
+17. check results at http://127.0.0.1:8000/book_app/api/books/
+
+![class based api page results](../../contents/class_based_api.png)

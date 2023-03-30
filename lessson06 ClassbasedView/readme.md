@@ -99,4 +99,9 @@ urlpatterns = [
 please adding url link to list view so that customer can click on id of product list to open product detail
 hint: add url tag <a> in product_list.html and use reverse url to get an url for product detail
 
+The results should look like the following images
+![list view](../../contents/list_view.png)
+![detail view](../../contents/detail_view.png)
+
+
 
