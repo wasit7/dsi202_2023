@@ -67,19 +67,10 @@ python manage.py runserver
 
 go to http://127.0.0.1:8000/admin/ 
 
-# create function based API
-0. install django-rest-framework 
-```bash
-$pip install djangorestframework
-```
-1. create api app using this folder structure
-```bash
-./api
-├── __init__.py
-└── views.py
-```
-add app in settings
+# create class based API
+7. install django_rest_api
 ```python
+#settings.py
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -87,49 +78,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'book_app',
     'rest_framework',
-    'api',
+    'book_app',
 ]
 ```
-2. create get_author fucntion
-```python
-#views.py
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-
-
-@api_view(['GET'])
-def get_data(request):
-    data={'name':'David', 'age':22}
-    return Response(data)
-
-```
-3. route url in app and project
-```python
-#myproject/api/urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.get_data),
-]
-```
-```python
-#myproject/urls.py
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls'))
-]
-```
-4. run server to check results
-go to http://127.0.0.1:8000/api/
-
-# create class based API
-1. book serializer
+8. book serializer
 ```python
 #/myproject/book_app/serializers.py
 from rest_framework import serializers
@@ -140,7 +93,7 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = ['id', 'title', 'author', 'published_date']
 ```
-2. book class based views
+9. book class based views
 ```python
 #/myproject/book_app/views.py
 from rest_framework import generics
@@ -155,7 +108,7 @@ class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 ```
-3. route url
+10. route url
 ```python
 #/mayproject/book_app/urls.py
 from django.urls import path
@@ -164,17 +117,17 @@ from book_app.views import BookList, BookDetail
 
 urlpatterns = [
     path('', views.get_data),
-    path('books/', BookList.as_view()),
-    path('book/<int:pk>/', BookDetail.as_view()),
+    path('api/books/', BookList.as_view()),
+    path('api/book/<int:pk>/', BookDetail.as_view()),
 ]
 ```
-4. run server to check results
+11. run server to check results
 gp to  http://127.0.0.1:8000/book_app/api/books/
-5. add serializer, views and url for author
+12. add serializer, views and url for author
 check github https://github.com/wasit7/dsi202_2023/tree/main/Lesson06%20REST%20API
 
 # create html for front end
-1. HTML template /myproject/book_app/templates/book_list.html
+13. HTML template /myproject/book_app/templates/book_list.html
 ```html
 {% load static %}
 <!DOCTYPE html>
@@ -193,7 +146,7 @@ check github https://github.com/wasit7/dsi202_2023/tree/main/Lesson06%20REST%20A
 
 <script src="{% static 'js/main.js' %}"></script>
 ```
-2. Javascript /myproject/book_app/static/js/main.js
+14. Javascript /myproject/book_app/static/js/main.js
 ```js
 // Get a reference to the form and the book list
 const bookForm = document.querySelector('#book-form');
@@ -223,13 +176,15 @@ bookForm.addEventListener('change', (event) => {
 });
 ```
 
-3. add view
+15. add view
 ```python
 #/myproject/book_app/views.py
 from django.shortcuts import render
 def book_list(request):
     authors = Author.objects.all()
     return render(request, 'book_list.html', {'authors': authors})
+```
+16. server staticfiles 
+please see source code /myproject/book_app/static/
 
-4. server staticfiles by create static fold /myproject/book_app/static/
-
+17. check results at http://127.0.0.1:8000/book_app/
