@@ -97,5 +97,6 @@ urlpatterns = [
 
 9. assignment add link to list view
 please adding url link to list view so that customer can click on id of product list to open product detail
+hint: add url tag <a> in product_list.html and use reverse url to get an url for product detail
 
 
