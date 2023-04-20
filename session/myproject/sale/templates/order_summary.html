@@ -1,0 +1,12 @@
+<!-- order_summary.html -->
+<a href="{% url 'product_list'%}">home</a>
+<h1>Order <Summary></Summary></h1>
+<ul>
+{% for k,v in table_order %}
+<li>
+    <a href="{% url 'product_detail' product.pk  %}">
+        {{ k }} {{ v }}
+    </a>
+</li>
+{% endfor %}
+</ul>

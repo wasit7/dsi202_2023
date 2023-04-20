@@ -1,0 +1,12 @@
+<!-- product_list.html -->
+<a href="{% url 'product_list'%}">home</a>
+<h1>Product List</h1>
+<ul>
+{% for product in object_list %}
+<li>
+    <a href="{% url 'product_detail' product.pk  %}">
+        {{ product.pk }} {{ product.name }}
+    </a> - {{ product.price }}
+</li>
+{% endfor %}
+</ul>
