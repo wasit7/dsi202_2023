@@ -1,4 +1,4 @@
-# create book app
+# create Sale app
 1. create project
 
 ```bash
