@@ -26,6 +26,7 @@ def add_to_cart(request, product_id):
     request.session['order_table']=d
     return HttpResponse("product id: {} <br> order: {} <br> d: {}".format(data,order,d))
 
+
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
