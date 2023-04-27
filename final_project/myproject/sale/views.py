@@ -24,7 +24,7 @@ def add_to_cart(request, product_id):
     for k,v in order.items():
        d.append({'product': k, 'quantity': v}) 
     request.session['order_table']=d
-    return HttpResponse("product id: {} <br> order: {}".format(data,order))
+    return HttpResponse("product id: {} <br> order: {} <br> d: {}".format(data,order,d))
 
 from django.shortcuts import render
 from django.views.generic import CreateView
