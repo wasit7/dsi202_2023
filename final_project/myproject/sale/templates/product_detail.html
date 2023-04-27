@@ -1,0 +1,9 @@
+<!-- product_detail.html -->
+<a href="{% url 'product_list'%}">home</a>
+<h1>{{ object.name }}</h1>
+<p>Weight: {{ object.weight }}</p>
+<p>Price: {{ object.unit_price }}</p>
+<p>image url: {{ object.image.url }}</p>
+<img src="{{ object.image.url }}">
+
+<a href="{% url 'add_to_cart' object.pk%}">home</a>
