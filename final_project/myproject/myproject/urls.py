@@ -18,8 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sale/', include('sale.urls'))
+    path('sale/', include('sale.urls')),
+    path('', include('myapp.urls'))
 ]
+
 
 from django.conf import settings
 from django.conf.urls.static import static
