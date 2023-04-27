@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'order_create' %}">New Order</a></li>
+            <!-- Add more links here as needed -->
+        </ul>
+    </nav>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
