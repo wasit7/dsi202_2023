@@ -1,5 +1,6 @@
 <!-- product_list.html -->
 <a href="{% url 'product_list'%}">home</a>
+<a href="{% url 'order_create' %}"> checkout</a>
 <h1>Product List</h1>
 <ul>
 {% for product in object_list %}
@@ -8,5 +9,6 @@
         {{ product.pk }} {{ product.name }}
     </a> - {{ product.unit_price }}
 </li>
+
 {% endfor %}
 </ul>
