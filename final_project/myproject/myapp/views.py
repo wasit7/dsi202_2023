@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import MyRegistrationForm, MyLoginForm
 
-def myhome(request):
+def home(request):
     return render(request, 'home.html', {'user': request.user})
 
 def myregister(request):
