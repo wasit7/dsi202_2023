@@ -142,7 +142,7 @@ def mylogout(request):
     logout(request)
     return redirect('home')
 ```
-## templates
+## creates templates
 ```html
 <!-- /myproject/myapp/home.html -->
 <a href="{% url 'home' %}"> Home </a>
@@ -181,5 +181,14 @@ urlpatterns = [
 ## runserver 
 ![myapp](../contents/final_project_myapp.png)
 
-# build sale app
-##
+# Build Sale App
+
+## creates models
+
+## create admin
+
+## creates views
+
+## creates templates
+
+## setup  urls

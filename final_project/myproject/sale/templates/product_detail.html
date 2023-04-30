@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Check product details, Add to cart</h1>
+    <h2>{{ object.name }}</h2>
+    <img src="{{ object.image.url }}">
+    <p>weight: {{ object.weight }} kg</p>
+    <p>price: THB{{ object.unit_price }}</p>
+    <a href="{% url 'add_to_cart' object.pk%}">add to cart</a>
+{% endblock %}
+

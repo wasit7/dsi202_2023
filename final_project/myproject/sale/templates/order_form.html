@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<h1>Check quantity, Scan QR, Upload reciept</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Display order items formset -->
+    {{ orderitems.management_form }}
+    <table id="orderitems-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in orderitems %}
+                <tr>
+                    <td>{{ form.product }}</td>
+                    <td>{{ form.quantity }}</td>
+                    <td>
+                        <button type="button" class="delete-item">Delete</button>
+                        {{ form.DELETE }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button type="submit">Submit</button>
+</form>
+
+<style>
+    /* Hide the DELETE checkboxes */
+    #orderitems-table input[type="checkbox"] {
+        display: none;
+    }
+</style>
+
+<script>
+    const orderitemsTable = document.querySelector('#orderitems-table');
+    orderitemsTable.addEventListener('click', (event) => {
+        if (event.target.classList.contains('delete-item')) {
+            const itemRow = event.target.closest('tr');
+            const deleteCheckbox = itemRow.querySelector('input[type="checkbox"]');
+            deleteCheckbox.checked = true;
+            itemRow.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}
