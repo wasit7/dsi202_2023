@@ -178,3 +178,8 @@ urlpatterns = [
     path('logout/', views.mylogout, name='logout'),
 ]
 ```
+## runserver 
+![myapp](../contents/final_project_myapp.png)
+
+# build sale app
+##
