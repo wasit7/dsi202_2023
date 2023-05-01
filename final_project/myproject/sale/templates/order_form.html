@@ -36,7 +36,8 @@
     </table>
     {{ form.grand_total.label }}: {{ form.grand_total }}
     <h2>2. Scan QR</h2>
-    <div><img id="my_qr" src="img_girl.jpg" alt="Thai QR code for payment" width="200" height="200"></div>  
+    {% load static %}
+    <div><img id="my_qr" src="{% static 'sale/thai_qr.jpg' %}" alt="Thai QR code for payment" width="164" height="164"></div>  
     <h2>3. Upload reciept</h2>
     {{ form.reciept.label }}: {{ form.reciept }}
     <h2>4. Confirm payment</h2>
@@ -76,8 +77,13 @@
         // const divqr = document.getElementById("#my_qr");
         // const imgqr=document.createElement("img").src="{{qr_url}}";
         // divqr.appendChild(imgqr);
-        const img = document.querySelector("#my_qr");
-        img.src = "{{qr_url}}".replace("amount", grandTotal.toFixed(2) );
+        const myTimeout = setTimeout(myGreeting, 1000);
+
+        function myGreeting() {
+            const img = document.querySelector("#my_qr");
+            img.src = "{{qr_url}}".replace("amount", grandTotal.toFixed(2) );
+        }
+        
     }
 
     const orderItemsTable = document.querySelector('#orderitems-table');
@@ -94,6 +100,7 @@
                 const deleteCheckbox = itemRow.querySelector('input[type="checkbox"]');
                 deleteCheckbox.checked = true;
                 itemRow.style.display = 'none';
+
                 updateSubtotalAndGrandTotal();
             }
         }
