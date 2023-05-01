@@ -35,8 +35,10 @@ from django.urls import reverse_lazy
 from django.forms import inlineformset_factory, ChoiceField
 
 from .models import Order, Item
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class OrderCreateView(CreateView):
+class OrderCreateView(LoginRequiredMixin,CreateView):
+    login_url = "login"
     model = Order
     fields = ['grand_total','reciept']
     template_name = 'order_form.html'

@@ -179,6 +179,11 @@ urlpatterns = [
 ]
 ```
 ## runserver 
+```bash
+$python manage.py makemigrations
+$python manage.py migrate
+$python manage.py runserver
+```
 ![myapp](../contents/final_project_myapp.png)
 
 # Build Sale App
@@ -204,3 +209,4 @@ $python manage.py makemigrations
 $python manage.py migrate
 $python manage.py runserver
 ```
+![myapp](../contents/final_project_sale.png)
