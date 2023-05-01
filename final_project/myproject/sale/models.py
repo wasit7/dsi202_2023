@@ -27,6 +27,7 @@ def update_profile_signal(sender, instance, created, **kwargs):
 class Order(models.Model):
     profile = models.ForeignKey( Profile, on_delete=models.CASCADE)
     reciept = models.ImageField(upload_to='reciepts')
+    grand_total = models.DecimalField(max_digits=7,decimal_places=2, default=0.0)
     def __str__(self):
         return "order: %s"%(self.pk)
 
@@ -34,5 +35,7 @@ class Item(models.Model):
     order = models.ForeignKey( Order, on_delete=models.CASCADE)
     product = models.ForeignKey( Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
+    unit_price = models.DecimalField(max_digits=7,decimal_places=2, default=0.0)
+    subtotal = models.DecimalField(max_digits=7,decimal_places=2, default=0.0)
     def __str__(self):
         return "order:{} {} of {}".format(self.order, self.quantity, self.product)
