@@ -184,11 +184,21 @@ urlpatterns = [
 # Build Sale App
 
 ## creates models
+please check models is /myproject/sale/models.py
 
 ## create admin
+please check models is /myproject/sale/admins.py
 
 ## creates views
+please check models is /myproject/sale/views.py
 
 ## creates templates
+please check models is /myproject/sale/templates
 
 ## setup  urls
+please check models is /myproject/sale/urls.py
+
+## runserver
+```bash
+$python manage.py runserver
+```
